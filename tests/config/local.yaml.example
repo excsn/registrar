@@ -1,0 +1,19 @@
+# tests/config/local.yaml.example
+
+# Copy this file to 'local.yaml' for local testing with plaintext credentials.
+# 'local.yaml' is ignored by git and should NEVER be committed.
+porkbun:
+  # A real domain you own and have designated exclusively for testing.
+  domain: "your-porkbun-test-domain.com"
+  credentials:
+    apikey: "pk1_your_porkbun_api_key_here"
+    secretapikey: "sk1_your_porkbun_secret_key_here"
+
+name_com:
+  # A domain name to use for testing within the dev environment.
+  # This does not need to be a real domain you own.
+  # If blank, a domain will be randomly generated
+  domain: "your-namecom-test-domain.net"
+  credentials:
+    username: "your_namecom_dev_username"
+    token: "your_namecom_dev_api_token"

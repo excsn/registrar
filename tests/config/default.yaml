@@ -1,0 +1,4 @@
+# tests/config/default.yaml
+
+# This file contains non-sensitive defaults and defines the overall
+# configuration structure. It is committed to version control.

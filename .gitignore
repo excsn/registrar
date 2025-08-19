@@ -1,1 +1,3 @@
 /target
+# Ignore local test configuration files
+/tests/config/local.yaml
