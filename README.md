@@ -25,14 +25,14 @@ Add `registrar` to your `Cargo.toml` file. By default, both `porkbun` and `name-
 
 ```toml
 [dependencies]
-registrar = "0.1.0"
+registrar = "0.9.0"
 ```
 
 To enable only specific providers and reduce dependencies, disable the default features and specify the ones you need:
 
 ```toml
 [dependencies]
-registrar = { version = "0.1.0", default-features = false, features = ["porkbun"] }
+registrar = { version = "0.9.0", default-features = false, features = ["porkbun"] }
 ```
 
 ## Documentation
@@ -40,10 +40,6 @@ registrar = { version = "0.1.0", default-features = false, features = ["porkbun"
 For a detailed guide on core concepts, configuration, and complete, runnable examples, please see the **[Usage Guide (README.USAGE.md)](README.USAGE.md)**.
 
 The full, comprehensive API reference is available on [docs.rs](https://docs.rs/registrar).
-
-## Contributing
-
-Contributions are welcome! Please see `CONTRIBUTING.md` for more details on how to get started, report issues, and submit pull requests.
 
 ## License
 
