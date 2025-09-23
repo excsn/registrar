@@ -407,7 +407,7 @@ This section lists all public request and response structs for the Name.com clie
     *   `pub privacy_enabled: bool`
     *   `pub contacts: Contacts`
     *   `pub nameservers: Vec<String>`
-    *   `pub renewal_price: f64`
+    *   `pub renewal_price: Option<f64>`
 *   **`struct Contacts`**: A placeholder for the detailed WHOIS contact information.
     *   `pub registrant: serde_json::Value`
     *   `pub admin: serde_json::Value`
