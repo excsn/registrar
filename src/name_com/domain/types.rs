@@ -29,7 +29,7 @@ pub struct Domain {
   pub privacy_enabled: bool,
   pub contacts: Contacts,
   pub nameservers: Vec<String>,
-  pub renewal_price: f64,
+  pub renewal_price: Option<f64>,
 }
 
 /// Represents the response from a ListDomains request.
