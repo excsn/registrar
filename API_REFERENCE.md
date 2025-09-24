@@ -410,9 +410,9 @@ This section lists all public request and response structs for the Name.com clie
     *   `pub renewal_price: Option<f64>`
 *   **`struct Contacts`**: A placeholder for the detailed WHOIS contact information.
     *   `pub registrant: serde_json::Value`
-    *   `pub admin: serde_json::Value`
-    *   `pub tech: serde_json::Value`
-    *   `pub billing: serde_json::Value`
+    *   `pub admin: Option<serde_json::Value>`
+    *   `pub tech: Option<serde_json::Value>`
+    *   `pub billing: Option<serde_json::Value>`
 *   **`struct CreateDomainResponse`**: The response after successfully creating a domain.
     *   `pub domain: Domain`
     *   `pub order: i32`

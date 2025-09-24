@@ -11,9 +11,9 @@ pub type Contact = Value;
 #[serde(rename_all = "camelCase")]
 pub struct Contacts {
   pub registrant: Contact,
-  pub admin: Contact,
-  pub tech: Contact,
-  pub billing: Contact,
+  pub admin: Option<Contact>,
+  pub tech: Option<Contact>,
+  pub billing: Option<Contact>,
 }
 
 /// Represents a single domain in a Name.com account.
