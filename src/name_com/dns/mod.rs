@@ -32,7 +32,7 @@ impl<'a> DnsClient<'a> {
     let mut page = 1;
     loop {
       let path = format!(
-        "{}{}{}?page={}",
+        "{}/{}{}?page={}",
         endpoints::CORE_V1_DOMAINS_PREFIX,
         self.domain_name,
         endpoints::CORE_V1_RECORDS_SUFFIX,
@@ -53,7 +53,7 @@ impl<'a> DnsClient<'a> {
   /// Retrieves a single DNS record by its ID.
   pub async fn get_record(&self, record_id: i32) -> Result<DnsRecord> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_RECORDS_SUFFIX,
@@ -65,7 +65,7 @@ impl<'a> DnsClient<'a> {
   /// Creates a new DNS record.
   pub async fn create_record(&self, payload: DnsRecordPayload<'_>) -> Result<DnsRecord> {
     let path = format!(
-      "{}{}{}",
+      "{}/{}{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_RECORDS_SUFFIX,
@@ -76,7 +76,7 @@ impl<'a> DnsClient<'a> {
   /// Updates an existing DNS record.
   pub async fn update_record(&self, record_id: i32, payload: DnsRecordPayload<'_>) -> Result<DnsRecord> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_RECORDS_SUFFIX,
@@ -88,7 +88,7 @@ impl<'a> DnsClient<'a> {
   /// Deletes a DNS record by its ID.
   pub async fn delete_record(&self, record_id: i32) -> Result<()> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_RECORDS_SUFFIX,
@@ -102,7 +102,7 @@ impl<'a> DnsClient<'a> {
   /// Retrieves a list of all DNSSEC records for the domain.
   pub async fn list_dnssec(&self) -> Result<Vec<DnssecRecord>> {
     let path = format!(
-      "{}{}{}",
+      "{}/{}{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_DNSSEC_SUFFIX
@@ -114,7 +114,7 @@ impl<'a> DnsClient<'a> {
   /// Retrieves a single DNSSEC record by its digest.
   pub async fn get_dnssec(&self, digest: &str) -> Result<DnssecRecord> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_DNSSEC_SUFFIX,
@@ -126,7 +126,7 @@ impl<'a> DnsClient<'a> {
   /// Creates a new DNSSEC record for the domain.
   pub async fn create_dnssec(&self, payload: DnssecCreatePayload<'_>) -> Result<DnssecRecord> {
     let path = format!(
-      "{}{}{}",
+      "{}/{}{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_DNSSEC_SUFFIX
@@ -137,7 +137,7 @@ impl<'a> DnsClient<'a> {
   /// Deletes a DNSSEC record from the domain by its digest.
   pub async fn delete_dnssec(&self, digest: &str) -> Result<()> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_DNSSEC_SUFFIX,

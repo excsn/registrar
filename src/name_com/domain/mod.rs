@@ -84,20 +84,20 @@ impl<'a> DomainClient<'a> {
 
   /// Retrieves the details for this specific domain.
   pub async fn get(&self) -> Result<Domain> {
-    let path = format!("{}{}", endpoints::CORE_V1_DOMAINS_PREFIX, self.domain_name);
+    let path = format!("{}/{}", endpoints::CORE_V1_DOMAINS_PREFIX, self.domain_name);
     self.client.get(&path).await
   }
 
   /// Updates the autorenew, privacy, or lock status for the domain.
   pub async fn update(&self, payload: UpdateDomainPayload) -> Result<Domain> {
-    let path = format!("{}{}", endpoints::CORE_V1_DOMAINS_PREFIX, self.domain_name);
+    let path = format!("{}/{}", endpoints::CORE_V1_DOMAINS_PREFIX, self.domain_name);
     self.client.patch(&path, payload).await
   }
 
   /// Retrieves the transfer authorization code (EPP code) for a domain.
   pub async fn get_auth_code(&self) -> Result<String> {
     let path = format!(
-      "{}{}{}",
+      "{}/{}{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_ACTION_GET_AUTH_CODE
@@ -109,7 +109,7 @@ impl<'a> DomainClient<'a> {
   /// Sets the nameservers for the domain.
   pub async fn set_nameservers(&self, nameservers: &[&str]) -> Result<Domain> {
     let path = format!(
-      "{}{}{}",
+      "{}/{}{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_ACTION_SET_NAMESERVERS

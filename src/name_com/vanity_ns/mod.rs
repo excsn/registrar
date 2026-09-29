@@ -30,7 +30,7 @@ impl<'a> VanityNameserverClient<'a> {
     let mut page = 1;
     loop {
       let path = format!(
-        "{}{}{}?page={}",
+        "{}/{}{}?page={}",
         endpoints::CORE_V1_DOMAINS_PREFIX,
         self.domain_name,
         endpoints::CORE_V1_VANITY_NS_SUFFIX,
@@ -54,7 +54,7 @@ impl<'a> VanityNameserverClient<'a> {
   /// * `hostname` - The hostname of the vanity nameserver (e.g., "ns1.example.org").
   pub async fn get(&self, hostname: &str) -> Result<VanityNameserver> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_VANITY_NS_SUFFIX,
@@ -66,7 +66,7 @@ impl<'a> VanityNameserverClient<'a> {
   /// Creates a new vanity nameserver.
   pub async fn create(&self, payload: VanityNsCreatePayload<'_>) -> Result<VanityNameserver> {
     let path = format!(
-      "{}{}{}",
+      "{}/{}{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_VANITY_NS_SUFFIX
@@ -85,7 +85,7 @@ impl<'a> VanityNameserverClient<'a> {
     payload: VanityNsUpdatePayload<'_>,
   ) -> Result<VanityNameserver> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_VANITY_NS_SUFFIX,
@@ -100,7 +100,7 @@ impl<'a> VanityNameserverClient<'a> {
   /// * `hostname` - The hostname of the vanity nameserver to delete.
   pub async fn delete(&self, hostname: &str) -> Result<()> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_VANITY_NS_SUFFIX,
