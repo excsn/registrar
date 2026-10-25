@@ -6,7 +6,7 @@
 
 pub const HELLO: &str = "/core/v1/hello";
 
-pub const CORE_V1_DOMAINS_PREFIX: &str = "/core/v1/domains"; // Requires {domainName}
+pub const CORE_V1_DOMAINS_PREFIX: &str = "/core/v1/domains";
 pub const CORE_V1_RECORDS_SUFFIX: &str = "/records"; // Appended to CORE_V1_DOMAINS_PREFIX path
 pub const CORE_V1_DNSSEC_SUFFIX: &str = "/dnssec"; // Appended to CORE_V1_DOMAINS_PREFIX path
 pub const CORE_V1_URL_FORWARDING_SUFFIX: &str = "/url/forwarding"; // Appended to CORE_V1_DOMAINS_PREFIX path

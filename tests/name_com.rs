@@ -157,7 +157,7 @@ async fn can_create_and_get_vanity_nameserver() {
 async fn can_check_domain_availability() {
   // --- SETUP ---
   let client = common::namecom_dev_client();
-  let domain_name = format!("registrar-test-{}.com", Uuid::new_v4().to_string()[..8].to_string());
+  let domain_name = format!("registrar-test-{}.com", &Uuid::new_v4().to_string()[..8]);
 
   // --- EXECUTE & ASSERT ---
   let results = client
