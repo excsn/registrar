@@ -12,8 +12,8 @@ porkbun:
 name_com:
   # A domain name to use for testing within the dev environment.
   # This does not need to be a real domain you own.
-  # If blank, a domain will be randomly generated
-  domain: "your-namecom-test-domain.net"
+  # Each <random> is replaced with the same 8 hex characters for the whole test run.
+  domain: "registrar-test-<random>.net"
   credentials:
     username: "your_namecom_dev_username"
     token: "your_namecom_dev_api_token"

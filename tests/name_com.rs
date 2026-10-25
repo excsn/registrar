@@ -28,11 +28,12 @@ async fn ensure_domain_exists(client: &registrar::name_com::NameDotCom, domain_n
     "[Prerequisite] Ensuring domain '{}' exists in dev environment...",
     domain_name
   );
-  let create_domain_result = client.domains().create(domain_name).await;
-  if let Err(e) = &create_domain_result {
-    let error_message = e.to_string().to_lowercase();
-    if !error_message.contains("domain already exists") && !error_message.contains("domain is not available") {
-      panic!("Failed to create domain for an unexpected reason: {:?}", e);
+  if let Err(create_error) = client.domains().create(domain_name).await {
+    if let Err(get_error) = client.domains().domain(domain_name).get().await {
+      panic!(
+        "Test domain '{}' could not be registered ({:?}) and is not in this account ({:?}). Set name_com.domain to an unused name such as registrar-test-<random>.net.",
+        domain_name, create_error, get_error
+      );
     }
   }
 }
@@ -168,4 +169,25 @@ async fn can_check_domain_availability() {
   assert_eq!(results.len(), 1);
   assert_eq!(results[0].domain_name, domain_name);
   println!("[Test] Verification successful for domain availability check.");
+}
+
+#[tokio::test]
+#[should_panic(expected = "is not in this account")]
+async fn ensure_domain_exists_panics_for_domain_outside_account() {
+  let client = common::namecom_dev_client();
+  ensure_domain_exists(&client, "google.com").await;
+}
+
+#[test]
+fn random_token_in_domain_is_replaced() {
+  assert_eq!(
+    common::expand_random_token("registrar-test-<random>.net", "a1b2c3d4"),
+    "registrar-test-a1b2c3d4.net"
+  );
+  assert_eq!(common::expand_random_token("fixed.net", "a1b2c3d4"), "fixed.net");
+}
+
+#[test]
+fn configured_domain_is_stable_within_a_run() {
+  assert_eq!(common::get_config().name_com.domain, common::get_config().name_com.domain);
 }

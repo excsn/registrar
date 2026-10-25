@@ -77,9 +77,17 @@ static STORE: Lazy<c5store::C5StoreRoot> = Lazy::new(|| {
 /// Retrieves and deserializes the entire test configuration.
 /// Panics if the configuration is not structured correctly.
 pub fn get_config() -> TestConfig {
-  STORE
+  let mut config: TestConfig = STORE
     .get_into_struct("")
-    .expect("Failed to deserialize configuration into TestConfig struct")
+    .expect("Failed to deserialize configuration into TestConfig struct");
+  config.name_com.domain = expand_random_token(&config.name_com.domain, &RUN_TOKEN);
+  config
+}
+
+static RUN_TOKEN: Lazy<String> = Lazy::new(|| uuid::Uuid::new_v4().simple().to_string()[..8].to_string());
+
+pub fn expand_random_token(template: &str, token: &str) -> String {
+  template.replace("<random>", token)
 }
 
 /// Creates a Porkbun client pre-configured from the loaded test settings.
