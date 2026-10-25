@@ -152,3 +152,20 @@ async fn can_create_and_get_vanity_nameserver() {
   assert_eq!(retrieved_vns.ips, ips);
   println!("[Test] Verification successful for Vanity NS.");
 }
+
+#[tokio::test]
+async fn can_check_domain_availability() {
+  // --- SETUP ---
+  let client = common::namecom_dev_client();
+  let domain_name = format!("registrar-test-{}.com", Uuid::new_v4().to_string()[..8].to_string());
+
+  // --- EXECUTE & ASSERT ---
+  let results = client
+    .domains()
+    .check_availability(&[&domain_name])
+    .await
+    .expect("Failed to check domain availability.");
+  assert_eq!(results.len(), 1);
+  assert_eq!(results[0].domain_name, domain_name);
+  println!("[Test] Verification successful for domain availability check.");
+}

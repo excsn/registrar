@@ -30,7 +30,7 @@ impl<'a> UrlForwardingClient<'a> {
     let mut page = 1;
     loop {
       let path = format!(
-        "{}{}{}?page={}",
+        "{}/{}{}?page={}",
         endpoints::CORE_V1_DOMAINS_PREFIX,
         self.domain_name,
         endpoints::CORE_V1_URL_FORWARDING_SUFFIX,
@@ -54,7 +54,7 @@ impl<'a> UrlForwardingClient<'a> {
   /// * `host` - The full hostname for the forwarding rule (e.g., "www.example.org").
   pub async fn get(&self, host: &str) -> Result<UrlForwardingRecord> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_URL_FORWARDING_SUFFIX,
@@ -66,7 +66,7 @@ impl<'a> UrlForwardingClient<'a> {
   /// Creates a new URL forwarding record.
   pub async fn create(&self, payload: UrlForwardingCreatePayload<'_>) -> Result<UrlForwardingRecord> {
     let path = format!(
-      "{}{}{}",
+      "{}/{}{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_URL_FORWARDING_SUFFIX
@@ -81,7 +81,7 @@ impl<'a> UrlForwardingClient<'a> {
   /// * `payload` - A struct with the new forwarding details.
   pub async fn update(&self, host: &str, payload: UrlForwardingUpdatePayload<'_>) -> Result<UrlForwardingRecord> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_URL_FORWARDING_SUFFIX,
@@ -96,7 +96,7 @@ impl<'a> UrlForwardingClient<'a> {
   /// * `host` - The full hostname of the rule to delete (e.g., "www.example.org").
   pub async fn delete(&self, host: &str) -> Result<()> {
     let path = format!(
-      "{}{}{}/{}",
+      "{}/{}{}/{}",
       endpoints::CORE_V1_DOMAINS_PREFIX,
       self.domain_name,
       endpoints::CORE_V1_URL_FORWARDING_SUFFIX,

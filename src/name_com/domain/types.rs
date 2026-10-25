@@ -100,12 +100,17 @@ pub(crate) struct CheckAvailabilityRequest {
 #[derive(Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct AvailabilityResult {
-  pub domain_name: String,
-  pub purchasable: bool,
-  pub premium: bool,
-  pub purchase_price: f64,
-  pub purchase_type: String,
-  pub renewal_price: f64,
+    pub domain_name: String,
+    #[serde(default)]
+    pub purchasable: bool,
+    #[serde(default)]
+    pub premium: bool,
+    #[serde(default)]
+    pub purchase_price: f64,
+    #[serde(default)]
+    pub purchase_type: String,
+    #[serde(default)]
+    pub renewal_price: f64,
 }
 
 /// The response from a domain availability check.
